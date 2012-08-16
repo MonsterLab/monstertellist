@@ -118,15 +118,17 @@ class M_article extends CI_Model {
             foreach($sqlResult->result_array() as $row){
                 $resultT[] = $row;          
             }
+            $sqlResult->free_result();
         }
 
         if($content != ''){
             $this->db->like('content',$content);
-            $sqlResult = $this->db-get('article');
+            $sqlResult = $this->db->get('article');
 
             foreach($sqlResult->result_array() as $row){
                 $resultC[] = $row;
             }
+            $sqlResult->free_result();
         }
 
         if($title == '' && $content ==''){
@@ -134,6 +136,7 @@ class M_article extends CI_Model {
             foreach($sqlResult->result_array() as $row){
                 $resultC[] = $row;
             }
+            $sqlResult->free_result();
         }
 
         $result = array_merge($resultT, $resultC);

@@ -58,32 +58,39 @@
             return  $result;
         }
 
+        public function checklogin(){
+            $username = $_SESSION['username'];
+            $power = $_SESSION['power'];
+
+            if(!isset($power)){
+                return 0;                                                       //0 is stand for not logged
+            } else {
+                return $power;                                                  //return user power 
+            }
+        }
+
         public function login(){
             $username = $this->getUsername();
             $password = $this->getPassword();
-
-            echo $username.$password;
 
             $this->db->where('username',$username);
             $this->db->where('password',$password);
             $sqlResult = $this->db->get('user');
 
-            //var_dump($sqlResult->result_array());
-            if($sqlResult->row_nums() > 0){
-//                $_SESSION['username'] = $username;
-//                $_SESSION['power'] = $sqlResult->row()->power;
+            if($sqlResult->num_rows() > 0){
+                $_SESSION['username'] = $username;
+                $_SESSION['power'] = $sqlResult->row(1)->power;
 
-                echo 'ok';
                 return true;
             } else {
-                echo 'bu ok!';
                 return false;
             }
 
         }
 
         public function logout(){
-            
+            $result = session_destroy();
+            return $result;
         }
 
         public function getProfile(){
