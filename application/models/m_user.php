@@ -54,7 +54,7 @@
                 'password' => $password
             );
 
-            $result = $this->db->insert('user',$sqlQuery);
+            $result = $this->db->insert('users',$sqlQuery);
             return  $result;
         }
 
@@ -75,7 +75,7 @@
 
             $this->db->where('username',$username);
             $this->db->where('password',$password);
-            $sqlResult = $this->db->get('user');
+            $sqlResult = $this->db->get('users');
 
             if($sqlResult->num_rows() > 0){
                 $_SESSION['username'] = $username;

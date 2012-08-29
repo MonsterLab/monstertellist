@@ -38,6 +38,21 @@
                 $this->load->view('tellist/search',$this->data);
             }
         }
+        
+        public function ajaxSearch(){
+            if($_GET){
+                $title = trim($_GET['title']);
+                $content = trim($_GET['content']);
+
+                $this->article->setTitle($title);
+                $this->article->setContent($content);
+                $result = $this->article->search();
+                $this->data['result'] = $result;
+
+                $result = json_encode($result);
+                echo $result;
+            }
+        }
     }
 
 ?>

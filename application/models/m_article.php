@@ -59,7 +59,7 @@ class M_article extends CI_Model {
             'groupId' => $groupId
         );
 
-        $result = $this->db->insert('article',$sqlQuery);
+        $result = $this->db->insert('articles',$sqlQuery);
 
         return $result;
     }
@@ -67,7 +67,7 @@ class M_article extends CI_Model {
     public function delete(){
         $tid = $this->getTid();
         $this->db->where('tid',$tid);
-        $result = $this->db->delete('article');
+        $result = $this->db->delete('articles');
 
         var_dump($result);
     }
@@ -85,7 +85,7 @@ class M_article extends CI_Model {
         );
 
         $this->db->where('tid',$tid);
-        $result = $this->db->update('article',$sqlQuery);
+        $result = $this->db->update('articles',$sqlQuery);
 
         var_dump($result);
     }
@@ -105,7 +105,7 @@ class M_article extends CI_Model {
         //tid 单项查询
         if($tid != ''){
             $this->db->where('tid',$tid);
-            $sqlResult = $this->db->get('article');
+            $sqlResult = $this->db->get('articles');
             foreach($sqlResult->result_array() as $row){
                 $result[] = $row;
             }
@@ -113,7 +113,7 @@ class M_article extends CI_Model {
         }
         if($title != ''){
             $this->db->like('title',$title);
-            $sqlResult = $this->db->get('article');
+            $sqlResult = $this->db->get('articles');
 
             foreach($sqlResult->result_array() as $row){
                 $resultT[] = $row;          
@@ -123,7 +123,7 @@ class M_article extends CI_Model {
 
         if($content != ''){
             $this->db->like('content',$content);
-            $sqlResult = $this->db->get('article');
+            $sqlResult = $this->db->get('articles');
 
             foreach($sqlResult->result_array() as $row){
                 $resultC[] = $row;
@@ -132,7 +132,7 @@ class M_article extends CI_Model {
         }
 
         if($title == '' && $content ==''){
-            $sqlResult = $this->db->get('article');
+            $sqlResult = $this->db->get('articles');
             foreach($sqlResult->result_array() as $row){
                 $resultC[] = $row;
             }

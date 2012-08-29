@@ -16,7 +16,7 @@
             content:<input type="text" name="content" /><br/>
             <input type="submit"/>
         </form>
-        <div>
+        <div id="result">
             <?php
                 if(isset($result)){
             ?>
